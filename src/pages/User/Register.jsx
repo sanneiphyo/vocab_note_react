@@ -48,22 +48,18 @@ const onFinish = async (values) => {
     
     try {
         const response = await axios.post(REGISTER_URL, JSON.stringify({
-           username : values.user.name, 
+           user_name : values.user.name, 
            email: values.user.name,
             password: values.password
         }), {
-            headers: {'Content-Type': 'application/json'},
-            Accept: 'application/json',
-            ContentType: 'application/json',
-            withCredentials: true
+            headers: {'Content-Type': 'application/json'},      
+           
         })
 
         console.log(response.data);
         console.log(response.accessToken);
         console.log(JSON.stringify(response));
-        
-        
-        
+               
         
     } catch (error) {
         if (!error?.response) {
