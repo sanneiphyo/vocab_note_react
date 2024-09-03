@@ -3,6 +3,8 @@ import Layout from "../Layout/Layout";
 import User from "../pages/User/User";
 import Note from "../pages/Note/Note";
 import Card from "../pages/Card/Card";
+import Register from "../pages/User/Register";
+import Login from "../pages/User/Login";
 
 
 const Router = () => {
@@ -24,6 +26,17 @@ const Router = () => {
         {
             path:"/user",
             element : <User/>
+
+        },
+
+        {
+            path:"/register",
+            element : <Register/>
+
+        },
+        {
+            path:"/login",
+            element : <Login/>
 
         }
     ]);
