@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Checkbox, Form, Input} from 'antd';
 import axios from '../../api/axios';
 import { useRef } from 'react';
+import img from '../../assets/image 2.png'
 
 const REGISTER_URL = '/register';
 
@@ -121,107 +122,121 @@ const Register = () => {
     }
     
     return (
-  <Form
-    {...formItemLayout}
-    name="register"
-    onFinish={onFinish}
-    style={{
-      maxWidth: 600,
-      margin: '100px auto'
-    }}
-    validateMessages={validateMessages}
-  >
-    <Form.Item
-      name={['user', 'name']}
-      label="Name"
-      rules={[
-        {
-          required: true,
-        },
-      ]}
-    >
-      <Input
-       ref={userRef}
-       onChange={(e)=> setUser(e.target.value)} 
-       value={user}
-       />
-    </Form.Item>
-    <Form.Item
-      name={['user', 'email']}
-      label="Email"
-      rules={[
-        {
-          type: 'email',
-        },
-      ]}
-    >
-      <Input 
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-      />
-    </Form.Item>
+      <div className="flex h-screen overflow-hidden">
+        <div className="  w-[47%]">
+            <img src={img} alt="" className='w-full h-full ' />
+        </div>
+        <div className=' w-[50%] flex justify-center items-center'>
+          <div className=' w-[498px] '>
+          <h2 className=' text-[#1777CE] text-[40px] font-bold leading-[68px] '>Sign Up</h2>
+          <Form
+          // {...formItemLayout}
+          name="register"
+          onFinish={onFinish}
+          style={{
+            maxWidth: 600,
+            margin: '40px auto'
+          }}
+          validateMessages={validateMessages}
+        >
+          <Form.Item
+            name={['user', 'name']}
+            className='w-full'
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <label htmlFor="name" className=' text-[16px] '>Full Name (required)</label>
+            <Input
+            ref={userRef}
+            placeholder='Enter your name'
+            onChange={(e)=> setUser(e.target.value)} 
+            value={user}
+            className='w-full h-[55px] text-[14px] mt-[8px]'
+            />
+          </Form.Item>
+          <Form.Item
+            name={['user', 'email']}
+           
+            rules={[
+              {
+                type: 'email',
+              },
+            ]}
+          >
+             <label htmlFor="email" className=' text-[16px] '>Email (required)</label>
 
-    <Form.Item
-        name="password"
-        label="Password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-        hasFeedback
-      >
-        <Input.Password 
-            onChange={(e) => setPwd(e.target.value)}
-            value={pwd}
-        />
-      </Form.Item>
-   
+            <Input 
+              onChange={(e) => setEmail(e.target.value)}
+               placeholder="Enter your email"
+              value={email}
+              className='w-full h-[55px] text-[14px] mt-[8px]'
+            />
+          </Form.Item>
 
-      <Form.Item
-        name="confirm"
-        label="Confirm Password"
-        dependencies={['password']}
-        hasFeedback
-        rules={[
-          {
-            required: true,
-            message: 'Please confirm your password!',
-          },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue('password') === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(new Error('The new password that you entered do not match!'));
-            },
-          }),
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+          <Form.Item
+              name="password"
+              
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your password!',
+                },
+              ]}
+              hasFeedback
+            >
+               <label htmlFor="password" className=' text-[16px] '>Password (required)</label>
 
-      <Form.Item
-        name="agreement"
-        valuePropName="checked"
-        rules={[
-          {
-            validator: (_, value) =>
-              value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
-          },
-        ]}
-        {...tailFormItemLayout}
-      >
-        <Checkbox>
-          I have read the <a href="">agreement</a>
-        </Checkbox>
-      </Form.Item>
-      <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit" onSubmit={handleSubmit}>
-          Register
-        </Button>
-      </Form.Item>
-  </Form>
+              <Input.Password 
+                  onChange={(e) => setPwd(e.target.value)}
+                   placeholder="Enter your password"
+                  value={pwd}
+                  className='w-full h-[55px] text-[14px] mt-[8px]'
+              />
+            </Form.Item>
+        
+
+            <Form.Item
+              name="confirm"
+             
+              dependencies={['password']}
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: 'Please confirm your password!',
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue('password') === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('The new password that you entered do not match!'));
+                  },
+                }),
+              ]}
+            >
+              <label htmlFor="confirm" className=' text-[16px] '>Confirm Password</label>
+
+              <Input.Password
+              placeholder='Confirm your password'
+               className='w-full h-[55px] text-[14px] mt-[8px]' />
+            </Form.Item>
+
+            
+            <Form.Item >
+              <Button type="primary" htmlType="submit" onSubmit={handleSubmit}
+              className='w-full h-[55px] text-[14px] mt-[8px]'
+              >
+                Register
+              </Button>
+            </Form.Item>
+          </Form>
+          </div>
+        </div>
+      </div>
+ 
 )};
 export default Register;

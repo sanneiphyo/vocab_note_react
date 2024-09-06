@@ -5,13 +5,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../api/axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAuth, login, selectIsAuthenticated } from '../../redux/services/AuthSlice';
+import img from '../../assets/image 2.png'
 
 
 const LOGIN_URL ='/login'
 
 const Login = () => {
 
- 
+  
 
   const auth = useSelector((state) => state.auth)
 
@@ -94,64 +95,84 @@ const Login = () => {
   return (
     <>
 
+
     {
       errMsg !== ''
       ? 
       <Alert message={errMsg} type="error" /> : ''
     }
     
+    <div className="flex h-screen overflow-hidden">
+    <div className="  w-[47%]">
+            <img src={img} alt="" className='w-full h-full ' />
+        </div>
+        <div className="w-[50%] flex justify-center items-center">
+          <div className="w-[498px]">
+            <h2 className=' text-[#1777CE] text-[40px] font-bold leading-[68px] '>Sign In</h2>
+            <Form
+              name="login"
+              initialValues={{
+                remember: true,
+              }}
+              style={{
+                
+                margin: '0 auto',
+                marginTop: '40px'
+              }}
+              onFinish={(e) => onFinish(e)}
+            >
+              <Form.Item
+                name="username"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your Username!',
+                  },
+                ]}
+              >
+                <label htmlFor="name" className=' text-[16px] '>User Name (required)</label>
+                <Input 
+                ref={userRef}
+                onChange={(e)=> setUser(e.target.value)} 
+                value={user}
+                required
+                prefix={<UserOutlined />} placeholder="Username" 
+                className='w-full h-[55px] text-[14px] mt-[8px]'/>
+              </Form.Item>
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your Password!',
+                  },
+                ]}
+              >
+                <label htmlFor="password" className=' text-[16px] '>Password (required)</label>
+                <Input
+                onChange={(e) => setPwd(e.target.value)}
+                value={pwd}
+                required
+                prefix={<LockOutlined />} type="password" placeholder="Password"
+                className='w-full h-[55px] text-[14px] mt-[8px]' />
+              </Form.Item>
+            
+              <Form.Item>
+                <Button block type="primary" htmlType="submit">
+                  Sign In
+                </Button>
+              </Form.Item>
 
-    <Form
-      name="login"
-      initialValues={{
-        remember: true,
-      }}
-      style={{
-        maxWidth: 360,
-        margin: '0 auto',
-        marginTop: '100px'
-      }}
-      onFinish={(e) => onFinish(e)}
-    >
-      <Form.Item
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Username!',
-          },
-        ]}
-      >
-        <Input 
-        ref={userRef}
-        onChange={(e)=> setUser(e.target.value)} 
-        value={user}
-        required
-        prefix={<UserOutlined />} placeholder="Username" />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Password!',
-          },
-        ]}
-      >
-        <Input
-        onChange={(e) => setPwd(e.target.value)}
-        value={pwd}
-        required
-        prefix={<LockOutlined />} type="password" placeholder="Password" />
-      </Form.Item>
-     
-      <Form.Item>
-        <Button block type="primary" htmlType="submit">
-          Sign In
-        </Button>
-        or <Link to={'/register'}>Register Now</Link>
-      </Form.Item>
-    </Form>
+              <div className="text-right ">
+                 <Link className='text-right text-[16px] ' to={'/register'}>Don't have an account? <span className='font-semibold text-blue-500'>Sign Up</span></Link>
+
+              </div>
+            </Form>
+          </div>
+        
+        </div>
+    </div>
+   
 
     </>
   );
