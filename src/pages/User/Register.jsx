@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Input} from 'antd';
 import axios from '../../api/axios';
 import { useRef } from 'react';
 
-const REGISTER_URL = '/users';
+const REGISTER_URL = '/register';
 
 const formItemLayout = {
     labelCol: {
@@ -49,7 +49,7 @@ const onFinish = async (values) => {
     try {
         const response = await axios.post(REGISTER_URL, JSON.stringify({
            user_name : values.user.name, 
-           email: values.user.name,
+           email: values.user.email,
             password: values.password
         }), {
             headers: {'Content-Type': 'application/json'},      

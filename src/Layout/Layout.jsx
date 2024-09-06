@@ -35,7 +35,7 @@ const AppLayout = () => {
             {
               key: '2',
               icon: <LayoutOutlined />,
-              label: <Link to="/card">Card</Link>,
+              label: <Link to="/revise">Revised Words</Link>,
             },
           
           ]}
@@ -47,7 +47,7 @@ const AppLayout = () => {
             padding: 0,
             background: colorBgContainer,
           }}
-          className="flex w-full justify-between"
+          className="flex justify-between w-full"
         >
           <Button
             type="text"

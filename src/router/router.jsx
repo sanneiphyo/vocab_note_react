@@ -5,7 +5,11 @@ import Note from "../pages/Note/Note";
 import Card from "../pages/Card/Card";
 import Register from "../pages/User/Register";
 import Login from "../pages/User/Login";
-
+import NotFound from "../pages/NotFound";
+import ProtectedRoute from "../components/ProtectedRoute";
+import RevisedWord from "../pages/RevisedWord/RevisedWord";
+import Quiz from "../pages/RevisedWord/Quiz";
+import Score from "../pages/RevisedWord/Score";
 
 const Router = () => {
     const config = createBrowserRouter([
@@ -15,12 +19,23 @@ const Router = () => {
             children: [          
             {
                 path:"/note",
-                element:<Note/>,
+                element: <ProtectedRoute><Note/></ProtectedRoute>,
             },
             {
-                path:"/card",
-                element:<Card/>
-            }
+                path:"/revise",
+                element: <ProtectedRoute><RevisedWord/></ProtectedRoute>,
+                
+            },
+
+            {
+                path: "/revise/quiz",
+                element: <Quiz/>
+               },
+
+               {
+                path: "/revise/quiz/score",
+                element: <Score/>
+               }
             ],
         },
         {
@@ -37,6 +52,11 @@ const Router = () => {
         {
             path:"/login",
             element : <Login/>
+
+        },
+        {
+            path:"*",
+            element : <NotFound />
 
         }
     ]);
