@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Checkbox, Form, Input} from 'antd';
+import { Alert, Button, Checkbox, Form, Input} from 'antd';
 import axios from '../../api/axios';
 import { useRef } from 'react';
 import img from '../../assets/image 2.png'
+import { Link, useNavigate } from 'react-router-dom';
 
 const REGISTER_URL = '/register';
+
+    
 
 const formItemLayout = {
     labelCol: {
@@ -43,83 +46,91 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-const onFinish = async (values) => {
 
-    console.log(values);
-    
-    try {
-        const response = await axios.post(REGISTER_URL, JSON.stringify({
-           user_name : values.user.name, 
-           email: values.user.email,
-            password: values.password
-        }), {
-            headers: {'Content-Type': 'application/json'},      
-           
-        })
-
-        console.log(response.data);
-        console.log(response.accessToken);
-        console.log(JSON.stringify(response));
-               
-        
-    } catch (error) {
-        if (!error?.response) {
-            console.log('No server Response');
-            
-        }else if(error.response?.status === 409){
-            console.log('Username Taken');
-            
-        }else {
-            console.log('Registration Failed');
-            
-        }
-    }
-};
 const Register = () => { 
 
     const userRef = useRef();
 
-
+    const navigate = useNavigate()
     
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
-
     const [email, setEmail] = useState('')
+    const [success, setSuccess] = useState(false)
+    const [errMsg, setErrMsg] = useState('')
 
-    const handleSubmit = async (e) =>{
-        e.preventDefault()
+    // const handleSubmit = async (e) =>{
+    //     e.preventDefault()
 
-        try {
-            const response = await axios.post(REGISTER_URL, JSON.stringify({
-               username : user, 
-               email: email,
-                password: pwd
-            }), {
-                headers: {'Content-Type': 'application/json'},
-                withCredentials: true
-            })
+    //     try {
+    //         const response = await axios.post(REGISTER_URL, JSON.stringify({
+    //            username : user, 
+    //            email: email,
+    //             password: pwd
+    //         }), {
+    //             headers: {'Content-Type': 'application/json'},
+    //             withCredentials: true
+    //         })
 
-            console.log(response.data);
-            console.log(response.accessToken);
-            console.log(JSON.stringify(response));
+    //         console.log(response.data);
+    //         console.log(response.accessToken);
+    //         console.log(JSON.stringify(response));
+            
+           
             
             
-            
-            
-        } catch (error) {
-            if (!error?.response) {
-                console.log('No server Response');
+    //     } catch (error) {
+    //         if (!error?.response) {
+    //             console.log('No server Response');
                 
-            }else if(error.response?.status === 409){
-                console.log('Username Taken');
+    //         }else if(error.response?.status === 409){
+    //             console.log('Username Taken');
                 
-            }else {
-                console.log('Registration Failed');
+    //         }else {
+    //             console.log('Registration Failed');
                 
-            }
-        }
+    //         }
+    //     }
 
-    }
+    // }
+
+
+    const onFinish = async (values) => {
+      
+  
+      console.log(values);
+      
+      try {
+          const response = await axios.post(REGISTER_URL, JSON.stringify({
+             user_name : values.user.name, 
+             email: values.user.email,
+              password: values.password
+          }), {
+              headers: {'Content-Type': 'application/json'},      
+             
+          })
+  
+        
+          console.log(JSON.stringify(response));
+
+          setSuccess(true)
+        
+          // navigate('/login')
+                 
+          
+      } catch (error) {
+        setSuccess(false)
+         
+        if (error) {
+         
+          setErrMsg(error.response?.data.message)
+         }else{
+          setErrMsg("Registration Failed")
+         }
+      }
+  };
+
+  if(user!==null)
     
     return (
       <div className="flex h-screen overflow-hidden">
@@ -127,114 +138,144 @@ const Register = () => {
             <img src={img} alt="" className='w-full h-full ' />
         </div>
         <div className=' w-[50%] flex justify-center items-center'>
-          <div className=' w-[498px] '>
-          <h2 className=' text-[#1777CE] text-[40px] font-bold leading-[68px] '>Sign Up</h2>
-          <Form
-          // {...formItemLayout}
-          name="register"
-          onFinish={onFinish}
-          style={{
-            maxWidth: 600,
-            margin: '40px auto'
-          }}
-          validateMessages={validateMessages}
-        >
-          <Form.Item
-            name={['user', 'name']}
-            className='w-full'
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <label htmlFor="name" className=' text-[16px] '>Full Name (required)</label>
-            <Input
-            ref={userRef}
-            placeholder='Enter your name'
-            onChange={(e)=> setUser(e.target.value)} 
-            value={user}
-            className='w-full h-[55px] text-[14px] mt-[8px]'
-            />
-          </Form.Item>
-          <Form.Item
-            name={['user', 'email']}
-           
-            rules={[
-              {
-                type: 'email',
-              },
-            ]}
-          >
-             <label htmlFor="email" className=' text-[16px] '>Email (required)</label>
 
-            <Input 
-              onChange={(e) => setEmail(e.target.value)}
-               placeholder="Enter your email"
-              value={email}
-              className='w-full h-[55px] text-[14px] mt-[8px]'
-            />
-          </Form.Item>
+        {
+          success ? 
+          <div className="flex items-start justify-center">
+            <div className="p-10 border border-gray-200 rounded-lg shadow-md">
+            <h2 className='text-green-500 text-[24px] font-semibold'>Your Account has been registered successfully!</h2>
+            <p className=' text-[20px] mt-4'>Please Sign In Again 
 
-          <Form.Item
-              name="password"
-              
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your password!',
-                },
-              ]}
-              hasFeedback
+              <Link to="/login" className='font-bold text-blue-500'>  Sign In</Link>
+            </p>
+          </div>
+          </div>
+          
+          : 
+
+            <div className=' w-[498px] '>
+            <h2 className=' text-[#1777CE] text-[40px] font-bold leading-[68px] '>Sign Up</h2>
+
+            {
+              errMsg !== ''
+              ? 
+              <Alert className='mt-5' message={errMsg} type="error" /> : ''
+            }
+    
+            <Form
+            //  {...formItemLayout}
+            name="register"
+            onFinish={onFinish}
+            style={{
+              maxWidth: 600,
+              margin: '40px auto'
+            }}
+            validateMessages={validateMessages}
             >
-               <label htmlFor="password" className=' text-[16px] '>Password (required)</label>
-
-              <Input.Password 
-                  onChange={(e) => setPwd(e.target.value)}
-                   placeholder="Enter your password"
-                  value={pwd}
-                  className='w-full h-[55px] text-[14px] mt-[8px]'
-              />
-            </Form.Item>
-        
+            <label htmlFor='user'  className=' text-[16px] '>Full Name (required)</label>
 
             <Form.Item
-              name="confirm"
-             
-              dependencies={['password']}
-              hasFeedback
+              name={['user', 'name']}
+              className='w-full'
               rules={[
                 {
                   required: true,
-                  message: 'Please confirm your password!',
                 },
-                ({ getFieldValue }) => ({
-                  validator(_, value) {
-                    if (!value || getFieldValue('password') === value) {
-                      return Promise.resolve();
-                    }
-                    return Promise.reject(new Error('The new password that you entered do not match!'));
-                  },
-                }),
               ]}
             >
-              <label htmlFor="confirm" className=' text-[16px] '>Confirm Password</label>
+              <Input
+              ref={userRef}
+              placeholder='Enter your name'
+              onChange={(e)=> setUser(e.target.value)} 
+              value={user}
+              className='w-full h-[55px] text-[14px] mt-[8px]'
+              />
+            </Form.Item>
+            <label htmlFor="email" className=' text-[16px] '>Email (required)</label>
+            <Form.Item
+              name={['user', 'email']}
 
-              <Input.Password
-              placeholder='Confirm your password'
-               className='w-full h-[55px] text-[14px] mt-[8px]' />
+              rules={[
+                {
+                  type: 'email',
+                },
+              ]}
+            >
+              
+
+              <Input 
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                value={email}
+                className='w-full h-[55px] text-[14px] mt-[8px]'
+              />
             </Form.Item>
 
-            
-            <Form.Item >
-              <Button type="primary" htmlType="submit" onSubmit={handleSubmit}
-              className='w-full h-[55px] text-[20px] mt-[8px]'
+            <label htmlFor="password" className=' text-[16px] '>Password (required)</label>
+            <Form.Item
+                name="password"
+                
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your password!',
+                  },
+                ]}
+                hasFeedback
               >
-                Register
-              </Button>
-            </Form.Item>
-          </Form>
-          </div>
+              
+
+                <Input.Password 
+                    onChange={(e) => setPwd(e.target.value)}
+                    placeholder="Enter your password"
+                    value={pwd}
+                    className='w-full h-[55px] text-[14px] mt-[8px]'
+                />
+              </Form.Item>
+
+
+              <label htmlFor="confirm" className=' text-[16px] '>Confirm Password</label>
+              <Form.Item
+                name="confirm"
+              
+                dependencies={['password']}
+                hasFeedback
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please confirm your password!',
+                  },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue('password') === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(new Error('The new password that you entered do not match!'));
+                    },
+                  }),
+                ]}
+              >
+              
+
+                <Input.Password
+                placeholder='Confirm your password'
+                className='w-full h-[55px] text-[14px] mt-[8px]' />
+              </Form.Item>
+
+              
+              <Form.Item >
+                <Button type="primary" htmlType="submit" 
+                className='w-full h-[55px] text-[20px] mt-[8px]'
+                >
+                  Register
+                </Button>
+              </Form.Item>
+            </Form>
+            </div>
+                      
+        }
+          
+         
         </div>
       </div>
  

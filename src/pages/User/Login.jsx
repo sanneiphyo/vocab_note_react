@@ -71,11 +71,13 @@ const Login = () => {
       setPwd('')
       setSuccess(true)
 
-     navigate('/card')
+     navigate('/note')
     } catch (error) {
+      console.log(error.response);
       
       
          if (error) {
+         
           setErrMsg(error.response?.data.message)
          }else{
           setErrMsg("Registration Failed")
@@ -92,16 +94,14 @@ const Login = () => {
     return (<Alert message="You are logged in" type="success" />)
   }
 
+  console.log(errMsg);
+  
+
   return (
     <>
 
 
-    {
-      errMsg !== ''
-      ? 
-      <Alert message={errMsg} type="error" /> : ''
-    }
-    
+  
     <div className="flex h-screen overflow-hidden">
     <div className="  w-[47%]">
             <img src={img} alt="" className='w-full h-full ' />
@@ -109,6 +109,12 @@ const Login = () => {
         <div className="w-[50%] flex justify-center items-center">
           <div className="w-[498px]">
             <h2 className=' text-[#1777CE] text-[40px] font-bold leading-[68px] '>Sign In</h2>
+                    {
+              errMsg !== ''
+              ? 
+              <Alert className='mt-5' message={errMsg} type="error" /> : ''
+            }
+    
             <Form
               name="login"
               initialValues={{
@@ -121,6 +127,7 @@ const Login = () => {
               }}
               onFinish={(e) => onFinish(e)}
             >
+                <label htmlFor="username" className=' text-[16px] '>User Name (required)</label>
               <Form.Item
                 name="username"
                 rules={[
@@ -130,7 +137,7 @@ const Login = () => {
                   },
                 ]}
               >
-                <label htmlFor="name" className=' text-[16px] '>User Name (required)</label>
+              
                 <Input 
                 ref={userRef}
                 onChange={(e)=> setUser(e.target.value)} 
@@ -139,6 +146,8 @@ const Login = () => {
                 prefix={<UserOutlined />} placeholder="Username" 
                 className='w-full h-[55px] text-[14px] mt-[8px]'/>
               </Form.Item>
+
+              <label htmlFor="password" className=' text-[16px] '>Password (required)</label>
               <Form.Item
                 name="password"
                 rules={[
@@ -148,7 +157,7 @@ const Login = () => {
                   },
                 ]}
               >
-                <label htmlFor="password" className=' text-[16px] '>Password (required)</label>
+                
                 <Input
                 onChange={(e) => setPwd(e.target.value)}
                 value={pwd}
