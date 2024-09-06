@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import User from "../pages/User/User";
-import Note from "../pages/Note/Note";
+import NewWord from "../pages/NewWord/NewWord";
 import Card from "../pages/Card/Card";
 import Register from "../pages/User/Register";
 import Login from "../pages/User/Login";
+import Flashcard from "../pages/NewWord/FlashCard"
 
 
 const Router = () => {
@@ -14,12 +15,16 @@ const Router = () => {
             element: <Layout />,
             children: [          
             {
-                path:"/note",
-                element:<Note/>,
+                path:"/new-word",
+                element:<NewWord/>,
             },
             {
                 path:"/card",
                 element:<Card/>
+            },
+            {
+                path:"/new-word/flashcard",
+                element:<Flashcard/>
             }
             ],
         },
