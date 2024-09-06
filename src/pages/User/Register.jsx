@@ -228,7 +228,7 @@ const Register = () => {
             
             <Form.Item >
               <Button type="primary" htmlType="submit" onSubmit={handleSubmit}
-              className='w-full h-[55px] text-[14px] mt-[8px]'
+              className='w-full h-[55px] text-[20px] mt-[8px]'
               >
                 Register
               </Button>

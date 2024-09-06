@@ -158,7 +158,9 @@ const Login = () => {
               </Form.Item>
             
               <Form.Item>
-                <Button block type="primary" htmlType="submit">
+                <Button block type="primary" htmlType="submit"
+                 className='w-full h-[55px] text-[20px] mt-[8px]'
+                >
                   Sign In
                 </Button>
               </Form.Item>
