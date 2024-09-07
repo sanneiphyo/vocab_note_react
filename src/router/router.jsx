@@ -34,7 +34,8 @@ const Router = () => {
             // },
             {
                 path:"/vocab/revise",
-                element: <ProtectedRoute><RevisedWord/></ProtectedRoute>,
+                // element: <ProtectedRoute><RevisedWord/></ProtectedRoute>,
+                element: <RevisedWord/>
             },
               
             {
@@ -47,12 +48,14 @@ const Router = () => {
             {
 
                 path: "/vocab/revise/quiz",
-                element: <ProtectedRoute><Quiz/></ProtectedRoute>
+                // element: <ProtectedRoute><Quiz/></ProtectedRoute>
+                element: <Quiz/>
                },
 
                {
                 path: "/vocab/revise/quiz/score",
-                element: <ProtectedRoute><Score /></ProtectedRoute>
+                // element: <ProtectedRoute><Score /></ProtectedRoute>
+                element: <Score />
                },
             {
 
