@@ -72,7 +72,7 @@ const Login = () => {
       setPwd('')
       setSuccess(true)
 
-     navigate('/vocab/note')
+     navigate('/vocab/new-word')
     } catch (error) {
       console.log(error.response);
       

@@ -35,7 +35,7 @@ const AppLayout = () => {
               key: '1',
               icon: <FolderOpenOutlined />,
 
-              label: <Link to="/new-word">New Word</Link>,
+              label: <Link to="/vocab/new-word">New Word</Link>,
 
             },
             {

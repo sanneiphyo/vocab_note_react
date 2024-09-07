@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'; // Use this at the top level
 export default function NewWordForm() {
   const [form] = Form.useForm();
   const navigate = useNavigate(); // Call useNavigate here
+  const token = localStorage.getItem('token')
 
   const onFinish = async (values) => {
     const formattedValues = {
@@ -19,20 +20,21 @@ export default function NewWordForm() {
     };
 
     try {
-      const apiUrl = 'http://localhost:3000'; 
+      const apiUrl = 'http://localhost:8000/api'; 
       console.log('Sending request to:', `${apiUrl}/vocabularies`);
       console.log('Request payload:', formattedValues);
 
       const response = await axios.post(`${apiUrl}/vocabularies`, formattedValues, {
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
       });
 
       message.success('Vocabulary submitted successfully');
       console.log('Server response:', response.data);
       form.resetFields();
-      navigate("/new-word/flashcard"); 
+      navigate("/vocab/new-word/flashcard"); 
     } catch (error) {
       message.error('Failed to submit the vocabulary');
       console.error('Error submitting form:', error);
