@@ -1,16 +1,21 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import User from "../pages/User/User";
-import Note from "../pages/Note/Note";
+import NewWord from "../pages/NewWord/NewWord";
 import Card from "../pages/Card/Card";
 import Register from "../pages/User/Register";
 import Login from "../pages/User/Login";
+
 import NotFound from "../pages/NotFound";
 import ProtectedRoute from "../components/ProtectedRoute";
 import RevisedWord from "../pages/RevisedWord/RevisedWord";
 import Quiz from "../pages/RevisedWord/Quiz";
 import Score from "../pages/RevisedWord/Score";
 import Home from "../pages/Home";
+
+import Flashcard from "../pages/NewWord/FlashCard"
+
+
 
 const Router = () => {
     const config = createBrowserRouter([
@@ -23,16 +28,24 @@ const Router = () => {
             element: <Layout />,
             children: [          
             {
+
                 path:"/vocab/note",
                 element: <ProtectedRoute><Note/></ProtectedRoute>,
             },
             {
                 path:"/vocab/revise",
                 element: <ProtectedRoute><RevisedWord/></ProtectedRoute>,
-                
+            },
+              
+            {
+
+                path:"/new-word",
+                element:<NewWord/>,
+
             },
 
             {
+
                 path: "/vocab/revise/quiz",
                 element: <ProtectedRoute><Quiz/></ProtectedRoute>
                },
@@ -40,7 +53,17 @@ const Router = () => {
                {
                 path: "/vocab/revise/quiz/score",
                 element: <ProtectedRoute><Score /></ProtectedRoute>
-               }
+               },
+            {
+
+                path:"/card",
+                element:<Card/>
+            },
+            {
+                path:"/new-word/flashcard",
+                element:<Flashcard/>
+            }
+
             ],
         },
         {

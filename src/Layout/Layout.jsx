@@ -24,10 +24,9 @@ const AppLayout = () => {
 
   return (
     <Layout className="h-[39rem]">
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider trigger={null} collapsible collapsed={collapsed}  style ={{ background: colorBgContainer}}>
         <div className="demo-logo-vertical" />  
         <Menu
-          theme="dark"
           mode="inline"
           className="mt-[6rem]"
           defaultSelectedKeys={['1']}
@@ -35,7 +34,9 @@ const AppLayout = () => {
             {
               key: '1',
               icon: <FolderOpenOutlined />,
-              label: <Link to="/vocab/note">Note</Link>,
+
+              label: <Link to="/new-word">New Word</Link>,
+
             },
             {
               key: '2',
