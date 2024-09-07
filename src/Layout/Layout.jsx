@@ -14,7 +14,7 @@ import Logout from '../pages/User/Logout';
 import { FormOutlined } from '@ant-design/icons';
 import { FolderOutlined } from '@ant-design/icons';
 import { LogoutOutlined } from '@ant-design/icons';
-
+import Logo from "../assets/Images/Logo.png";
 const { Header, Sider, Content } = Layout;
 
 const AppLayout = () => {
@@ -31,34 +31,34 @@ const AppLayout = () => {
     <Layout className="min-h-screen ">
       <Sider trigger={null} collapsible collapsed={collapsed}  style ={{ background: colorBgContainer}}>
         <div className="demo-logo-vertical" />  
+        <div className='mx-[3rem] mt-5'>
+          <img src = {Logo} className='w-[10rem] h-[5rem]'/>
+        </div>
         <Menu
           mode="inline"
-          className="mt-[6rem] text-[18px]"
+          className="mt-[2rem] text-[18px]"
           defaultSelectedKeys={['1']}
           items={[
             {
               key: '1',
               icon: <FormOutlined />,
 
-              label: <Link to="/vocab/new-word" className=' text-[18px]'>New Word</Link>,
+              label: <Link to="/vocab/new-word" className=' text-[15px]'>New Word</Link>,
 
             },
             {
               key: '2',
               icon: <FolderOutlined />,
-              label: <Link to="/vocab/revise" className=' text-[18px]'>Revised Words</Link>,
+              label: <Link to="/vocab/revise" className=' text-[15px]'>Revised Words</Link>,
             },
-            {
-              key: '3',
-              icon: <LogoutOutlined />,
-              label:  <Logout /> ,
-            }
+            
           
           ]}
         />
 
         
-        <div className="fixed bottom-0 ">
+        <div className="fixed bottom-0 mx-5">
+          <LogoutOutlined />
          <Logout />
         </div>
       </Sider>
