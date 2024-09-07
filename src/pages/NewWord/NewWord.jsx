@@ -2,7 +2,7 @@ import React from 'react';
 import { SearchOutlined ,PlusOutlined } from '@ant-design/icons';
 import { Input, Space} from 'antd';
 import AddNewWord from "./AddNewWord";
-
+import Nodata from "../../assets/Images/No data image.png"
 
 const { Search } = Input;
 
@@ -32,8 +32,12 @@ const NewWord = () => {
           size="large"
           onSearch={onSearch}
           className='sm:mx-[10rem] mt-3 flex'
+
+
+
         />
       </Space>
+      <img src={Nodata} alt="No data" className='w-[20rem] mt-5 ml-[20rem] h-[16rem]'/>
       <AddNewWord/>
      
     </div>
