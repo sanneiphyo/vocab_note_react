@@ -12,12 +12,14 @@ const Flashcard = () => {
   const [selectedVocab, setSelectedVocab] = useState(null); 
 
   useEffect(() => {
+    const token = localStorage.getItem('token')
     const fetchVocabularies = async () => {
       try {
-        const apiUrl = 'http://localhost:3000/vocabularies';
+        const apiUrl = 'http://localhost:8000/api/vocabularies';
         const response = await axios.get(apiUrl, {
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
           },
         });
         setVocabularies(response.data);
@@ -57,12 +59,12 @@ const Flashcard = () => {
           enterButton="Search"
           size="large"
           onSearch={onSearch}
-          className='mt-3 flex'
+          className='flex mt-3'
         />
       </Space>
 
       <div className='mt-14 w-[35rem] mx-[8rem] overflow-y-auto h-[20rem]'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
+        <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
           {filteredVocabularies.map((vocab) => (
             <Card
               key={vocab.id}

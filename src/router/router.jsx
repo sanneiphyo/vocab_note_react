@@ -27,11 +27,11 @@ const Router = () => {
             path: "/vocab",
             element: <Layout />,
             children: [          
-            {
+            // {
 
-                path:"/vocab/note",
-                element: <ProtectedRoute><Note/></ProtectedRoute>,
-            },
+            //     path:"/vocab/note",
+            //     element: <ProtectedRoute><Note/></ProtectedRoute>,
+            // },
             {
                 path:"/vocab/revise",
                 element: <ProtectedRoute><RevisedWord/></ProtectedRoute>,
@@ -39,7 +39,7 @@ const Router = () => {
               
             {
 
-                path:"/new-word",
+                path:"/vocab/new-word",
                 element:<NewWord/>,
 
             },
@@ -56,11 +56,11 @@ const Router = () => {
                },
             {
 
-                path:"/card",
+                path:"/vocab/card",
                 element:<Card/>
             },
             {
-                path:"/new-word/flashcard",
+                path:"/vocab/new-word/flashcard",
                 element:<Flashcard/>
             }
 
