@@ -4,6 +4,7 @@ import axios from '../../api/axios'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addToRevisedQuiz } from '../../redux/services/QuizSlice'
+import { LogoutOutlined } from '@ant-design/icons'
 
 const Logout = () => {
 
@@ -43,7 +44,9 @@ const Logout = () => {
           }
     }
   return (
-    <Button onClick={handleLogout}>Logout</Button>
+    <Button className='border-0 w-[190px]  text-[20px]' onClick={handleLogout}>
+      
+        Logout</Button>
   )
 }
 

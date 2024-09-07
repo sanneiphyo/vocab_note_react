@@ -5,10 +5,15 @@ import {
   UserOutlined,
   FolderOpenOutlined,
   LayoutOutlined 
+  
+  
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import { Outlet, Link } from 'react-router-dom';
 import Logout from '../pages/User/Logout';
+import { FormOutlined } from '@ant-design/icons';
+import { FolderOutlined } from '@ant-design/icons';
+import { LogoutOutlined } from '@ant-design/icons';
 
 const { Header, Sider, Content } = Layout;
 
@@ -23,29 +28,39 @@ const AppLayout = () => {
   
 
   return (
-    <Layout className="h-[39rem]">
+    <Layout className="min-h-screen ">
       <Sider trigger={null} collapsible collapsed={collapsed}  style ={{ background: colorBgContainer}}>
         <div className="demo-logo-vertical" />  
         <Menu
           mode="inline"
-          className="mt-[6rem]"
+          className="mt-[6rem] text-[18px]"
           defaultSelectedKeys={['1']}
           items={[
             {
               key: '1',
-              icon: <FolderOpenOutlined />,
+              icon: <FormOutlined />,
 
-              label: <Link to="/vocab/new-word">New Word</Link>,
+              label: <Link to="/vocab/new-word" className=' text-[18px]'>New Word</Link>,
 
             },
             {
               key: '2',
-              icon: <LayoutOutlined />,
-              label: <Link to="/vocab/revise">Revised Words</Link>,
+              icon: <FolderOutlined />,
+              label: <Link to="/vocab/revise" className=' text-[18px]'>Revised Words</Link>,
             },
+            {
+              key: '3',
+              icon: <LogoutOutlined />,
+              label:  <Logout /> ,
+            }
           
           ]}
         />
+
+        
+        <div className="fixed bottom-0 ">
+         <Logout />
+        </div>
       </Sider>
       <Layout>
         <Header
@@ -73,7 +88,7 @@ const AppLayout = () => {
           </Button>
           {username}
 
-          <Logout />
+          {/* <Logout /> */}
           </div>
           
          

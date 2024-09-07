@@ -1,4 +1,4 @@
-import { Button } from 'antd'
+import { Button, Spin } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import QuestionLayout from '../../components/QuestionLayout'
@@ -41,6 +41,16 @@ useEffect(()=>{
 }, [response, revisedList])
 
 
+if (loading) {
+  return (
+
+      <div className="flex items-center justify-center h-[500px]">
+          <Spin size="large" />
+      </div>
+  )
+}
+
+
 
 console.log(revisedList)
 
@@ -59,18 +69,24 @@ console.log(revisedList)
 
           <p className='text-center w-[502px]'>
           You don’t have any words added yet. Start building your vocabulary by adding your first word! <br />
-          <span className='font-semibold text-blue-700'> Need At least 10  words to answer quiz !! </span> <br />
+          <br />
           
           </p>
          </div>
         
       }
+
+      {
+        revisedList.length < 10 ?
+        <p className='font-semibold text-center text-blue-700'> Need At least 10  words to answer quiz !! </p> 
+        : ''
+      
+      }
        
       <div className="flex justify-center mt-5">
        <NavLink className="" to='/vocab/revise/quiz'> 
        <Button 
-       disabled={revised_quiz.length < 10? false: true}
-        >Start Quiz</Button></NavLink>
+       disabled={revisedList.length >= 10? false: true}>Start Quiz</Button></NavLink>
       </div>
 
        {/* <QuestionLayout /> */}
