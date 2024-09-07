@@ -107,7 +107,7 @@ const next = () => {
       setQuestionIndex(questionIndex + 1)
       
   }else {
-      navigate('/revise/quiz/score')
+      navigate('/vocab/revise/quiz/score')
   }
 }
 

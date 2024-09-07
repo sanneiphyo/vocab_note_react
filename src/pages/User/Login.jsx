@@ -64,6 +64,7 @@ const Login = () => {
 
       
       localStorage.setItem('token', accessToken)
+      localStorage.setItem('user',user)
 
       
 
@@ -71,7 +72,7 @@ const Login = () => {
       setPwd('')
       setSuccess(true)
 
-     navigate('/note')
+     navigate('/vocab/note')
     } catch (error) {
       console.log(error.response);
       

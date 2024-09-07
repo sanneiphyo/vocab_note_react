@@ -1,6 +1,7 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { clearIncorrects } from '../../redux/services/QuizSlice'
 
 const Score = () => {
 
@@ -15,8 +16,22 @@ const Score = () => {
   
 })
 
+
+const dispatch = useDispatch()
+const navigate = useNavigate()
+
+const handleIncorrectWords = () =>{
+  dispatch(clearIncorrects)
+  navigate('/vocab/revise/')
+}
+
 console.log(incorrect_quiz);
 
+
+const handleRetakeQuiz = () =>{
+  dispatch(clearIncorrects)
+ navigate('/vocab/revise/quiz/')
+}
 
   return (
     <div className=' w-[760px] border border-[#A6A6A6] m-auto bg-white shadow-md rounded-2xl p-[24px]'>
@@ -44,8 +59,8 @@ console.log(incorrect_quiz);
         </div>
 
         <div className=" mt-[48px] flex justify-center">
-          <Link to='' className="w-[250px] py-[16px] px-[20px] font-bold text-[20px]">Retake Quiz</Link>
-          <Link to='' className=" py-[16px] px-[20px] font-bold text-[20px] bg-[#1777CE] rounded-[4px] text-white hover:text-white ">Review Incorrect Words</Link>
+          <button onClick={handleRetakeQuiz} className="w-[250px] py-[16px] px-[20px] font-bold text-[20px]">Retake Quiz</button>
+          <button onClick={handleIncorrectWords}  className=" py-[16px] px-[20px] font-bold text-[20px] bg-[#1777CE] rounded-[4px] text-white hover:text-white ">Review Incorrect Words</button>
         </div>
         <div className="flex justify-center">
             <p className='mt-[24px] w-[300px] text-center text-[16px] text-[#333]'>Keep going! Every mistake is a step closer to mastering your vocabulary!</p>

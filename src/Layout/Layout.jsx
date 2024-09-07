@@ -8,6 +8,7 @@ import {
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import { Outlet, Link } from 'react-router-dom';
+import Logout from '../pages/User/Logout';
 
 const { Header, Sider, Content } = Layout;
 
@@ -16,6 +17,10 @@ const AppLayout = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const username = localStorage.getItem('user')
+
+  
 
   return (
     <Layout className="h-[39rem]">
@@ -30,12 +35,12 @@ const AppLayout = () => {
             {
               key: '1',
               icon: <FolderOpenOutlined />,
-              label: <Link to="/note">Note</Link>,
+              label: <Link to="/vocab/note">Note</Link>,
             },
             {
               key: '2',
               icon: <LayoutOutlined />,
-              label: <Link to="/revise">Revised Words</Link>,
+              label: <Link to="/vocab/revise">Revised Words</Link>,
             },
           
           ]}
@@ -59,11 +64,17 @@ const AppLayout = () => {
               height: 64,
             }}
           />
-          <Link to = "/user">
-          <Button className="mr-[3rem] bg-gray-300 h-10 rounded-full mt-3">
+         
+          <div className="mr-[3rem]">
+          <Button className="mr-[8px] bg-gray-300 h-10 rounded-full mt-3">
             <UserOutlined />
+            
           </Button>
-          </Link>
+          {username}
+
+          <Logout />
+          </div>
+          
          
         </Header>
         <Content

@@ -10,31 +10,36 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import RevisedWord from "../pages/RevisedWord/RevisedWord";
 import Quiz from "../pages/RevisedWord/Quiz";
 import Score from "../pages/RevisedWord/Score";
+import Home from "../pages/Home";
 
 const Router = () => {
     const config = createBrowserRouter([
         {
-            path: "/",
+            path: '/',
+            element: <Home />
+        },
+        {
+            path: "/vocab",
             element: <Layout />,
             children: [          
             {
-                path:"/note",
+                path:"/vocab/note",
                 element: <ProtectedRoute><Note/></ProtectedRoute>,
             },
             {
-                path:"/revise",
+                path:"/vocab/revise",
                 element: <ProtectedRoute><RevisedWord/></ProtectedRoute>,
                 
             },
 
             {
-                path: "/revise/quiz",
-                element: <Quiz/>
+                path: "/vocab/revise/quiz",
+                element: <ProtectedRoute><Quiz/></ProtectedRoute>
                },
 
                {
-                path: "/revise/quiz/score",
-                element: <Score/>
+                path: "/vocab/revise/quiz/score",
+                element: <ProtectedRoute><Score /></ProtectedRoute>
                }
             ],
         },
