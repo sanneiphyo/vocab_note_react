@@ -5,20 +5,57 @@ import NewWord from "../pages/NewWord/NewWord";
 import Card from "../pages/Card/Card";
 import Register from "../pages/User/Register";
 import Login from "../pages/User/Login";
+
+import NotFound from "../pages/NotFound";
+import ProtectedRoute from "../components/ProtectedRoute";
+import RevisedWord from "../pages/RevisedWord/RevisedWord";
+import Quiz from "../pages/RevisedWord/Quiz";
+import Score from "../pages/RevisedWord/Score";
+import Home from "../pages/Home";
+
 import Flashcard from "../pages/NewWord/FlashCard"
+
 
 
 const Router = () => {
     const config = createBrowserRouter([
         {
-            path: "/",
+            path: '/',
+            element: <Home />
+        },
+        {
+            path: "/vocab",
             element: <Layout />,
             children: [          
             {
-                path:"/new-word",
-                element:<NewWord/>,
+
+                path:"/vocab/note",
+                element: <ProtectedRoute><Note/></ProtectedRoute>,
             },
             {
+                path:"/vocab/revise",
+                element: <ProtectedRoute><RevisedWord/></ProtectedRoute>,
+            },
+              
+            {
+
+                path:"/new-word",
+                element:<NewWord/>,
+
+            },
+
+            {
+
+                path: "/vocab/revise/quiz",
+                element: <ProtectedRoute><Quiz/></ProtectedRoute>
+               },
+
+               {
+                path: "/vocab/revise/quiz/score",
+                element: <ProtectedRoute><Score /></ProtectedRoute>
+               },
+            {
+
                 path:"/card",
                 element:<Card/>
             },
@@ -26,6 +63,7 @@ const Router = () => {
                 path:"/new-word/flashcard",
                 element:<Flashcard/>
             }
+
             ],
         },
         {
@@ -42,6 +80,11 @@ const Router = () => {
         {
             path:"/login",
             element : <Login/>
+
+        },
+        {
+            path:"*",
+            element : <NotFound />
 
         }
     ]);
