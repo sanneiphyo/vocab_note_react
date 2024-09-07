@@ -7,6 +7,8 @@ import useQuizApi from '../../hooks/useQuizApi'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToRevisedQuiz } from '../../redux/services/QuizSlice'
 import noData from '../../assets/noData.jpg'
+import Flashcard from '../NewWord/FlashCard'
+import RevisedCard from './RevisedCard'
 
 const RevisedWord = () => {
 
@@ -23,6 +25,11 @@ const RevisedWord = () => {
 const {response, loading} = useQuizApi({url: apiUrl})
 
 const [revisedList, setRevisedList] = useState([])
+
+const url = window.location.pathname;
+
+console.log(url);
+
 
 const dispatch = useDispatch()
 
@@ -55,12 +62,15 @@ if (loading) {
 console.log(revisedList)
 
   return (
-    <div className=' lg:px-[177px]'>
-      <SearchInput />
+    <div className=''>
+      {/* <SearchInput /> */}
 
       {
         revisedList.length > 0
-        ? <div>{revisedList.length}</div>:
+        ? <div>
+          <RevisedCard  url={url}/>
+          
+        </div>:
          <div className=' flex justify-center flex-col items-center mt-[76px]'>
           <div className=" w-[310px] h-[258px] mx-auto">
             <img src={noData} alt="" />

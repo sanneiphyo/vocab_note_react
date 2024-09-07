@@ -27,6 +27,7 @@ export default function NewWordForm() {
       const response = await axios.post(`${apiUrl}/vocabularies`, formattedValues, {
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
       });
 

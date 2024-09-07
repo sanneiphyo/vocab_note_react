@@ -6,18 +6,25 @@ import Balloon from "../../assets/Images/Balloon.png";
 
 const { Search } = Input;
 
-const Flashcard = () => {
+const RevisedCard = () => {
+
+ 
+    
   const [vocabularies, setVocabularies] = useState([]);
   const [filteredVocabularies, setFilteredVocabularies] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedVocab, setSelectedVocab] = useState(null);
   const token = localStorage.getItem('token');
 
+  
+  
+
+
   useEffect(() => {
     
     const fetchVocabularies = async () => {
       try {
-        const apiUrl = 'http://localhost:8000/api/vocabularies';
+        const apiUrl = 'http://localhost:8000/api/vocabularies?is_revised=true';
         const response = await axios.get(apiUrl, {
           headers: {
             'Content-Type': 'application/json',
@@ -91,7 +98,7 @@ const Flashcard = () => {
   return (
     <div className='w-full'>
   
-  <div className="flex justify-center">
+     <div className="flex justify-center">
      <Space direction="vertical" className='w-[38rem] '>
         <Search
           suffix={<SearchOutlined style={{ fontSize: 16, color: '#1677ff' }} />}
@@ -104,7 +111,7 @@ const Flashcard = () => {
       </Space>
      </div>
 
-      <div className="custom-scrollbar mt-14 mx-auto w-[38rem] overflow-y-auto h-[400px]">
+      <div className="custom-scrollbar mt-14 mx-auto w-[38rem]  overflow-y-auto h-[400px]">
         <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
           <div className='mt-14 w-[35rem] mx-[8rem] overflow-y-auto h-[20rem]'>
             <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
@@ -158,14 +165,9 @@ const Flashcard = () => {
                   <p className='font-bold text-lg mt-[1rem]'>Example Sentence:</p>
                   <p>{selectedVocab.example}</p>
                 </div>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  onClick={AddToRevise}
-                  className='font-bold mb-3 bg-blue-600 py-5 ml-[5rem] text-md mt-5 w-[15rem]'
-                >
-                  Add to Review Word
-                </Button>
+
+                
+                
               </div>
             )}
           </Modal>
@@ -175,4 +177,4 @@ const Flashcard = () => {
   );
 };
 
-export default Flashcard;
+export default RevisedCard;
