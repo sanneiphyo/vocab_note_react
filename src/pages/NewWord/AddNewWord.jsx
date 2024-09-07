@@ -45,12 +45,13 @@ export default function AddNewWord() {
   return (
     <div className="container  px-4 py-8">
         
-      <div className=" text-gray-500 mt-[10rem]  mx-[14rem] ">No words added yet. Click "Add New Word" to get started!</div>
+      <div className=" text-gray-500   mx-[15rem] ">You don't have any word added yet.Starting building your vocabulary by </div>
+      <div className=" text-gray-500   mx-[25rem] "> adding your new word!</div>
 
       <Button
         type="primary"
         onClick={showModal}
-        className="mb-8 bg-blue-500 mx-[20rem] mt-3 hover:bg-blue-600 border-blue-500 hover:border-blue-600 text-white font-bold py-2 px-4 rounded"
+        className="mb-8 bg-blue-700 mx-[25rem] mt-3 hover:bg-blue-500 border-blue-500 hover:border-blue-600 text-white font-bold py-2 px-4 rounded"
       >
         Add New Word <PlusOutlined />
       </Button>

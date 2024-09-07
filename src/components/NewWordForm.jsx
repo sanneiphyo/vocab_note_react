@@ -1,11 +1,11 @@
 import React from 'react';
 import { Form, Input, Button, message, Switch } from 'antd';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Use this at the top level
+import { useNavigate } from 'react-router-dom'; 
 
 export default function NewWordForm() {
   const [form] = Form.useForm();
-  const navigate = useNavigate(); // Call useNavigate here
+  const navigate = useNavigate(); 
 
   const onFinish = async (values) => {
     const formattedValues = {
@@ -15,7 +15,6 @@ export default function NewWordForm() {
       antonyms: values.antonyms,
       type: values.speech,
       example: values.exampleSentence,
-      is_revised: values.isRevised,
     };
 
     try {
@@ -114,14 +113,7 @@ export default function NewWordForm() {
         </Form.Item>
       </div>
 
-      <Form.Item
-        name="isRevised"
-        valuePropName="checked"
-        initialValue={true}
-      >
-        <Switch checkedChildren="Revised" unCheckedChildren="Not Revised" defaultChecked />
-      </Form.Item>
-
+    
       <div className="flex gap-3 font-bold">
         <Form.Item className="mt-5 bg-white">
           <Button type="primary" htmlType="cancel" className=' bg-white border border-gray-500 text-black w-[14rem]'>
