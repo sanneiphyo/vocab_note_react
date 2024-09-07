@@ -4,9 +4,9 @@
 
 
 
-.custom-scrollbar {
+/* .custom-scrollbar {
     overflow-y: scroll; 
-  }
+  } */
   
   .custom-scrollbar::-webkit-scrollbar {
     width: 12px; 
