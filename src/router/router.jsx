@@ -41,7 +41,7 @@ const Router = () => {
             {
 
                 path:"/vocab/new-word",
-                element:<NewWord/>,
+                element:<ProtectedRoute><NewWord/></ProtectedRoute>,
 
             },
 
@@ -60,11 +60,11 @@ const Router = () => {
             {
 
                 path:"/vocab/card",
-                element:<Card/>
+                element: <ProtectedRoute> <Card/></ProtectedRoute>
             },
             {
                 path:"/vocab/new-word/flashcard",
-                element:<Flashcard/>
+                element: <ProtectedRoute><Flashcard/></ProtectedRoute>
             }
 
             ],
