@@ -16,7 +16,7 @@ const Flashcard = () => {
     const token = localStorage.getItem('token');
     const fetchVocabularies = async () => {
       try {
-        const apiUrl = 'http://localhost:8000/api/vocabularies';
+        const apiUrl = 'http://localhost:3000/vocabularies';
         const response = await axios.get(apiUrl, {
           headers: {
             'Content-Type': 'application/json',
