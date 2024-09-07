@@ -51,25 +51,25 @@ const Flashcard = () => {
     setSelectedVocab(null);
   };
 
-  // const handleUpdate = async () => {
-  //   if (!selectedVocab) return;
+  const AddToRevise = async () => {
+    if (!selectedVocab) return;
 
-  //   try {
-  //     const apiUrl = `http://localhost:3000/vocabularies/${selectedVocab.id}`;
-  //     const updatedData = { ...selectedVocab }; 
-  //     await axios.put(apiUrl, updatedData, {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     });
-  //     message.success('Vocabulary updated successfully');
-  //     setIsModalVisible(false);
-  //     setVocabularies(); 
-  //   } catch (error) {
-  //     message.error('Failed to update vocabulary');
-  //     console.error('Error updating vocabulary:', error);
-  //   }
-  // };
+    try {
+      const apiUrl = `http://localhost:8000/api/vocabularies/${selectedVocab.id}`;
+      const updatedData = { ...selectedVocab }; 
+      await axios.put(apiUrl, updatedData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      message.success('Vocabulary updated successfully');
+      setIsModalVisible(false);
+      setVocabularies(); 
+    } catch (error) {
+      message.error('Failed to update vocabulary');
+      console.error('Error updating vocabulary:', error);
+    }
+  };
 
   const handleDelete = async () => {
     if (!selectedVocab) return;
@@ -129,13 +129,7 @@ const Flashcard = () => {
             {selectedVocab && (
               <div>
                 <div className="flex gap-3 ml-[25rem]">
-                  {/* <Button
-                    type="primary"
-                    className="rounded-full text-orange-400 bg-yellow-200"
-                    onClick={handleUpdate}
-                  >
-                    <EditOutlined />
-                  </Button> */}
+                 
                   <Button
                     type="primary"
                     className="rounded-full text-red-500 bg-red-200"
@@ -163,6 +157,7 @@ const Flashcard = () => {
                 <Button
                   type="primary"
                   htmlType="submit"
+                  onClick={AddToRevise}
                   className='font-bold mb-3 bg-blue-600 py-5 ml-[5rem] text-md mt-5 w-[15rem]'
                 >
                   Add to Review Word
