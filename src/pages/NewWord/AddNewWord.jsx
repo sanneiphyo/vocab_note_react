@@ -1,69 +1,69 @@
-import React, { useState } from 'react';
-import { Modal, Button, Card ,message } from 'antd';
+import React, { useState, useRef, useEffect } from 'react';
+import { Modal, Button, Card, message, Spin } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import Form from "../../components/NewWordForm"; 
+import NewWordForm from "../../components/NewWordForm";
 
-const AddNewWord = () => {
+export default function AddNewWord() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [words, setWords] = useState([]); 
-  const [newWord, setNewWord] = useState(''); 
+  const [words, setWords] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const lastCardRef = useRef(null);
+
+  useEffect(() => {
+    if (lastCardRef.current) {
+      lastCardRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [words]);
 
   const showModal = () => {
     setIsModalOpen(true);
-  };
-
-  const handleAddNewWord = () => {
-    if (newWord) {
-      setWords([...words, newWord]); 
-      setNewWord(''); 
-      setIsModalOpen(false); 
-      message.success("New Word successfully added")
-
-    }else {
-      message.error("error happened while you sumit" )
-    }
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
+  const handleFormSubmit = async (newWord) => {
+    if (newWord) {
+      setIsLoading(true);
+      try {
+        // Simulating an API call
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setWords(prevWords => [...prevWords, newWord]);
+        setIsModalOpen(false);
+        message.success("New word successfully added");
+      } catch (error) {
+        message.error("Error occurred while submitting");
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      message.error("Error occurred while submitting");
+    }
+  };
+
   return (
-    <div className='mx-[15rem]'>
+    <div className="container  px-4 py-8">
+        
+      <div className=" text-gray-500 mt-[10rem]  mx-[14rem] ">No words added yet. Click "Add New Word" to get started!</div>
+
       <Button
         type="primary"
         onClick={showModal}
-        className='rounded-md bg-gray-100 text-black py-3 sm:ml-[25rem] mt-3'
+        className="mb-8 bg-blue-500 mx-[20rem] mt-3 hover:bg-blue-600 border-blue-500 hover:border-blue-600 text-white font-bold py-2 px-4 rounded"
       >
         Add New Word <PlusOutlined />
       </Button>
-
+    
       <Modal
         title="Add New Word"
         open={isModalOpen}
         onCancel={handleCancel}
-        footer={[
-          <Button key="cancel" onClick={handleCancel} className ="px-[2rem] py-5  w-[13rem] mr-[2rem] mt-3 ">
-            CANCLE
-          </Button>,
-          <Button key="add"  onClick={handleAddNewWord} className='bg-gray-400 font-bold mr-2 px-[2rem] py-5 w-[13rem] '>
-            ADD 
-          </Button>,
-        ]}
+        footer={null}
       >
-        <Form setNewWord={setNewWord} /> 
+        <NewWordForm onSubmit={handleFormSubmit} />
       </Modal>
 
-      {/* Render cards for each word */}
-      <div className="mt-5 grid grid-cols-1 gap-4">
-        {words.map((word, index) => (
-          <Card key={index} title={`Word ${index + 1}`} className="shadow-lg">
-            <p>{word}</p>
-          </Card>
-        ))}
-      </div>
     </div>
   );
-};
-
-export default AddNewWord;
+}

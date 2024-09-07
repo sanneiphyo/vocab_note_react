@@ -1,0 +1,124 @@
+{
+  "vocabularies": [
+    {
+      "id": "bf6c",
+      "title": "vcvc",
+      "definition": "vcvcv",
+      "synonyms": "vcvc",
+      "antonyms": "vccv",
+      "type": "vcvc",
+      "example": "vcvcv",
+      "is_revised": true
+    },
+    {
+      "id": "c10a",
+      "title": "dffdsf",
+      "definition": "fdfd",
+      "synonyms": "ffsfsfs",
+      "antonyms": "fdfd",
+      "type": "fdfdf",
+      "example": "ffd",
+      "is_revised": true
+    },
+    {
+      "id": "38f2",
+      "title": "apple",
+      "definition": "dfdf",
+      "synonyms": "fdjf",
+      "antonyms": "fdfdf",
+      "type": "apple",
+      "example": "fdfd",
+      "is_revised": true
+    },
+    {
+      "id": "3671",
+      "title": "fdfd",
+      "definition": "fdfdf",
+      "synonyms": "fdfdf",
+      "antonyms": "fdfd",
+      "type": "fdfd",
+      "example": "fdfd",
+      "is_revised": true
+    },
+    {
+      "id": "aa23",
+      "title": "fdfd",
+      "definition": "fdfdf",
+      "synonyms": "fdfdf",
+      "antonyms": "fdfd",
+      "type": "fdfd",
+      "example": "fdfd",
+      "is_revised": true
+    },
+    {
+      "id": "fce0",
+      "title": "zxzz",
+      "definition": "xzxzx",
+      "synonyms": "xzx",
+      "antonyms": "xzxz",
+      "type": "xzxz",
+      "example": "xzxz",
+      "is_revised": true
+    },
+    {
+      "id": "06d0",
+      "title": "sdfsdf",
+      "definition": "dsdsd",
+      "synonyms": "dss",
+      "antonyms": "fdfd",
+      "type": "ffdf",
+      "example": "fdfd",
+      "is_revised": true
+    },
+    {
+      "id": "5737",
+      "title": "fdfdf",
+      "definition": "fdfd",
+      "synonyms": "cxc",
+      "antonyms": "fdfdf",
+      "type": "fdfd",
+      "example": "fdfd",
+      "is_revised": true
+    },
+    {
+      "id": "a044",
+      "title": "fdfdfd",
+      "definition": "fdfd",
+      "synonyms": "fdfd",
+      "antonyms": "ffdfdfdfdf",
+      "type": "fdf",
+      "example": "fdfd",
+      "is_revised": true
+    },
+    {
+      "id": "0443",
+      "title": "fdfdf",
+      "definition": "fdfdf",
+      "synonyms": "fdfdf",
+      "antonyms": "dfdfd",
+      "type": "fdfdfd",
+      "example": "fdfdfd",
+      "is_revised": true
+    },
+    {
+      "id": "658e",
+      "title": "dsdsd",
+      "definition": "xzxz",
+      "synonyms": "dsds",
+      "antonyms": "dsds",
+      "type": "dsds",
+      "example": "dsdsd",
+      "is_revised": true
+    },
+    {
+      "id": "4d20",
+      "title": "dfdfd",
+      "definition": "fdfdf",
+      "synonyms": "fdfdfd",
+      "antonyms": "fdfdfdfd",
+      "type": "fdfdfd",
+      "example": "fdfd",
+      "is_revised": true
+    }
+  ]
+}
