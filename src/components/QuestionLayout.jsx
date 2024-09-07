@@ -114,7 +114,7 @@ const next = () => {
 if (loading) {
   return (
 
-      <div className="flex justify-center align-middle">
+      <div className="flex justify-center items-center h-[500px]">
           <Spin size="large" />
       </div>
   )
