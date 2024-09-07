@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Carousel } from 'antd';
 import { RotateRightOutlined } from '@ant-design/icons';
 import Text from "./Text"
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsAuthenticated } from '../../redux/services/AuthSlice';
 
 const cards = [
   {
@@ -29,15 +32,24 @@ const cards = [
 const Flashcard = ({ english, burmese }) => {
   const [flipped, setFlipped] = useState(false);
 
+  const navigate = useNavigate()
+  const isAuthenticated =  useSelector(selectIsAuthenticated)
+
   const handleFlip = () => {
     setFlipped(!flipped);
   };
+
+  // useEffect(()=>{
+  //   if (!isAuthenticated) {
+  //     navigate('/login')
+  //   }
+  // },[isAuthenticated, navigate])
 
 
   return (
     <>
       <Card
-      className="w-full shadow-lg bg-gray-50 rounded-xl  cursor-pointer transition-transform transform-gpu hover:scale-105"
+      className="w-full transition-transform shadow-lg cursor-pointer bg-gray-50 rounded-xl transform-gpu hover:scale-105"
       onClick={handleFlip}
       cover={
         <div className="flex px-[8rem] w-full py-[4rem] h-48 bg-slate-700 text-white text-3xl  ">
@@ -48,7 +60,7 @@ const Flashcard = ({ english, burmese }) => {
         <RotateRightOutlined key="flip" onClick={handleFlip} />,
       ]}
     >
-      <div className="text-center text-lg">
+      <div className="text-lg text-center">
         {flipped ? 'Burmese' : 'English'}
       </div>
     </Card>
@@ -61,6 +73,7 @@ function App() {
   return (
 
     <>
+    
       <div  className='text-2xl '>
       <Text/>
       </div>

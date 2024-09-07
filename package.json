@@ -11,6 +11,7 @@
     "json-server": "json-server --watch src/assets/db.json --port 3000"
   },
   "dependencies": {
+    "@ant-design/icons-svg": "^4.4.2",
     "@reduxjs/toolkit": "^2.2.7",
     "antd": "^5.20.3",
     "axios": "^1.7.6",

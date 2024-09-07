@@ -6,7 +6,10 @@ import { ConfigProvider } from "antd";
 const App = () => {
   return (
     <ConfigProvider>
-      <Router/>
+     
+        <Router/>
+    
+      
     </ConfigProvider>
   )
 }
