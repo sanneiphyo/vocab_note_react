@@ -119,7 +119,7 @@ export default function NewWordForm() {
       <Form.Item
         name="isRevised"
         valuePropName="checked"
-        initialValue={true}
+        initialValue={false}
       >
         <Switch checkedChildren="Revised" unCheckedChildren="Not Revised" defaultChecked />
       </Form.Item>

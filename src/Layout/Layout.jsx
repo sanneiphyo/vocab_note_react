@@ -29,7 +29,7 @@ const AppLayout = () => {
 
   return (
     <Layout className="min-h-screen ">
-      <Sider trigger={null} collapsible collapsed={collapsed}  style ={{ background: colorBgContainer}}>
+      <Sider className='relative w-[100%] ' trigger={null} collapsible collapsed={collapsed}  style ={{ background: colorBgContainer}}>
         <div className="demo-logo-vertical" />  
         <div className='mx-[3rem] mt-5'>
           <img src = {Logo} className='w-[10rem] h-[5rem]'/>
@@ -56,11 +56,28 @@ const AppLayout = () => {
           ]}
         />
 
+
+      <Menu
+          theme="light"
+          mode="inline"
+          className=" w-full top-[150px] hover:bg-none mt-[400px]"  // Push to the bottom
+        >
+          <Menu.Item
+            key="logout"
+            className=''
+            icon={<LogoutOutlined className=' hover:bg-none' />}
+           
+          >
+           
+            <Logout />
+          </Menu.Item>
+        </Menu>
+
         
-        <div className="fixed bottom-0 mx-5">
+        {/* <div className="fixed bottom-0 mx-5">
           <LogoutOutlined />
          <Logout />
-        </div>
+        </div> */}
       </Sider>
       <Layout>
         <Header
