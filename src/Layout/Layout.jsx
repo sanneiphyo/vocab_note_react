@@ -43,7 +43,7 @@ const AppLayout = () => {
               key: '1',
               icon: <FormOutlined />,
 
-              label: <Link to="/vocab/new-word" className=' text-[15px]'>New Word</Link>,
+              label: <Link to="/vocab/new-word/flashcard" className=' text-[15px]'>New Word</Link>,
 
             },
             {

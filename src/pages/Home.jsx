@@ -32,7 +32,7 @@ const Home = () => {
       <div className="flex flex-wrap justify-center gap-4 mt-8">
         <Link 
           className="block w-full px-12 py-3 text-sm font-medium text-white bg-blue-600 rounded shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-          to="/login"
+          to="/vocab/new-word/flashcard"
         >
           Get Started
         </Link>

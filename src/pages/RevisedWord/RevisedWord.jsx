@@ -35,6 +35,8 @@ const dispatch = useDispatch()
 
 console.log(response);
 
+console.log(revisedList)
+
 
     
 
@@ -68,6 +70,7 @@ console.log(revisedList)
       {
         revisedList.length > 0
         ? <div>
+         
           <RevisedCard  url={url}/>
           
         </div>:

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { SearchOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Input, Space, Card, message, Modal, Button } from 'antd';
+import { Input, Space, Card, message, Modal, Button, Spin } from 'antd';
 import axios from 'axios';
 import Balloon from "../../assets/Images/Balloon.png";
+import AddNewWord from './AddNewWord';
+import Nodata from '../../assets/Images/No data image.png'
 
 const { Search } = Input;
 
@@ -12,10 +14,12 @@ const Flashcard = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedVocab, setSelectedVocab] = useState(null);
   const token = localStorage.getItem('token');
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     
     const fetchVocabularies = async () => {
+      setLoading(true)
       try {
         const apiUrl = 'http://localhost:8000/api/vocabularies';
         const response = await axios.get(apiUrl, {
@@ -26,6 +30,7 @@ const Flashcard = () => {
         });
         setVocabularies(response.data);
         setFilteredVocabularies(response.data);
+        setLoading(false)
       } catch (error) {
         message.error('Failed to fetch vocabularies');
         console.error('Error fetching vocabularies:', error);
@@ -52,12 +57,23 @@ const Flashcard = () => {
     setSelectedVocab(null);
   };
 
+  if (loading) {
+    return (
+  
+        <div className="flex justify-center items-center h-[500px]">
+            <Spin size="large" />
+        </div>
+    )
+  }
+  
+
   const AddToRevise = async () => {
     if (!selectedVocab) return;
 
     try {
+      console.log(selectedVocab)
       const apiUrl = `http://localhost:8000/api/vocabularies/${selectedVocab.id}`;
-      const updatedData = { ...selectedVocab }; 
+      const updatedData = { ...selectedVocab}; 
       await axios.put(apiUrl, updatedData, {
         headers: {
           'Content-Type': 'application/json',
@@ -104,7 +120,10 @@ const Flashcard = () => {
       </Space>
      </div>
 
-      <div className="custom-scrollbar mt-14 mx-auto w-[38rem] overflow-y-auto h-[400px]">
+     
+      {
+        filteredVocabularies?.length > 0 ?
+        <div className="custom-scrollbar mt-14 mx-auto w-[38rem] overflow-y-auto h-[400px]">
         <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
           <div className='mt-14 w-[35rem] mx-[8rem] overflow-y-auto h-[20rem]'>
             <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
@@ -170,7 +189,24 @@ const Flashcard = () => {
             )}
           </Modal>
         </div>
+      </div> : 
+      <div  className='flex justify-center'>
+         <div>
+         <img src={Nodata} alt="No data" className=' mt-5  h-[16rem] mx-auto'/>
+             
+             <div className=" text-gray-500   mx-[15rem] ">You don't have any word added yet.Starting building your vocabulary by </div>
+             <div className=" text-gray-500   mx-[25rem] "> adding your new word!</div>
+
+             
+         </div>
+
       </div>
+      }
+
+<div className="flex justify-center ">
+     <AddNewWord />
+     </div>
+     
     </div>
   );
 };
