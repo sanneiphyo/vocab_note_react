@@ -3,13 +3,26 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import heroImg from '../assets/hero-img.png'
 import Mission from './Home/Mission'
+import Services from './Home/Services'
+import ContactUs from './Home/ContactUs'
+import Footer from './Home/Footer'
+import logo from '../assets/Images/Logo.png'
 
 const Home = () => {
   return (
     <>
 <div className="flex justify-between py-[20px] px-[100px]">
     <div className="">
-        <h2 className=' text-[32px] text-[#1777CE] font-serif font-extrabold'>Voca Note</h2>
+        {/* <h2 className=' text-[32px] text-[#1777CE] font-serif font-extrabold'>Voca Note</h2> */}
+        <img src={logo} alt="" className='w-[45px]'/>
+        
+    </div>
+    <div className="flex items-center justify-between w-[30%]">
+     
+       <a href='#home' >Home</a>
+       <a  href='#about'>About</a>
+       <a  href='#services'>Services</a>
+       <a href='#contact'>Contact</a>
     </div>
     <div className="flex items-center justify-center">
        <Button className='border-0 shadow-0 py-[20px] px-[24px] text-[16px] font-semibold'><Link to="/login">Login</Link></Button>
@@ -17,9 +30,9 @@ const Home = () => {
     </div>
     
 </div>
-<section className="bg-gray-50 ">
+<section id='home' className="bg-gray-50 ">
     {/* <img src={heroImg} alt="" className='' /> */}
-  <div className="max-w-screen-xl px-4 pb-32 mx-auto lg:flex lg:h-screen lg:items-center">
+  <div className="max-w-screen-xl px-4 py-32 mx-auto lg:flex lg:h-screen lg:items-center">
     <div className="max-w-3xl mx-auto text-center">
       <h1 className="text-3xl font-extrabold sm:text-5xl">
       "Unlock the Power of Words: 
@@ -44,8 +57,20 @@ const Home = () => {
   </div>
 </section>
 
-<section id="Mission">
+<section id="about">
   <Mission />
+</section>
+
+<section id='services'>
+  <Services />
+</section>
+
+<section id='contact'>
+  <ContactUs />
+</section>
+
+<section >
+  <Footer />
 </section>
     
     </>
