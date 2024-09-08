@@ -34,37 +34,37 @@ const Router = () => {
             // },
             {
                 path:"/vocab/revise",
-                element: <ProtectedRoute><RevisedWord/></ProtectedRoute>,
-                // element: <RevisedWord/>
+                // element: <ProtectedRoute><RevisedWord/></ProtectedRoute>,
+                element: <RevisedWord/>
             },
               
             {
 
                 path:"/vocab/new-word",
-                element:<ProtectedRoute><NewWord/></ProtectedRoute>,
+                element:<NewWord/>
 
             },
 
             {
 
                 path: "/vocab/revise/quiz",
-                element: <ProtectedRoute><Quiz/></ProtectedRoute>
-                // element: <Quiz/>
+                // element: <ProtectedRoute><Quiz/></ProtectedRoute>
+                element: <Quiz/>
                },
 
                {
                 path: "/vocab/revise/quiz/score",
-                element: <ProtectedRoute><Score /></ProtectedRoute>
-                // element: <Score />
+                // element: <ProtectedRoute><Score /></ProtectedRoute>
+                element: <Score />
                },
             {
 
                 path:"/vocab/card",
-                element: <ProtectedRoute> <Card/></ProtectedRoute>
+                element: <Card/>
             },
             {
                 path:"/vocab/new-word/flashcard",
-                element: <ProtectedRoute><Flashcard/></ProtectedRoute>
+                element: <Flashcard/>
             }
 
             ],

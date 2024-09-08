@@ -2,6 +2,7 @@ import { Button } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import heroImg from '../assets/hero-img.png'
+import Mission from './Home/Mission'
 
 const Home = () => {
   return (
@@ -41,6 +42,10 @@ const Home = () => {
       </div>
     </div>
   </div>
+</section>
+
+<section id="Mission">
+  <Mission />
 </section>
     
     </>
