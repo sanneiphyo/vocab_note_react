@@ -73,7 +73,8 @@ const Flashcard = () => {
     try {
       console.log(selectedVocab)
       const apiUrl = `http://localhost:8000/api/vocabularies/${selectedVocab.id}`;
-      const updatedData = { ...selectedVocab}; 
+      const updatedData = { ...selectedVocab, is_revised : true}; 
+      console.log(updatedData)
       await axios.put(apiUrl, updatedData, {
         headers: {
           'Content-Type': 'application/json',
@@ -93,8 +94,14 @@ const Flashcard = () => {
     if (!selectedVocab) return;
 
     try {
-      const apiUrl = `http://localhost:3000/vocabularies/${selectedVocab.id}`;
-      await axios.delete(apiUrl);
+      const apiUrl = `http://localhost:8000/api/vocabularies/${selectedVocab.id}`;
+      await axios.delete(apiUrl,{
+       
+          headers: {
+           
+             'Authorization': `Bearer ${token}`
+          }
+      });
       message.success('Vocabulary deleted successfully');
       setIsModalVisible(false);
       setVocabularies(); 
@@ -123,9 +130,9 @@ const Flashcard = () => {
      
       {
         filteredVocabularies?.length > 0 ?
-        <div className="custom-scrollbar mt-14 mx-auto w-[38rem] overflow-y-auto h-[400px]">
-        <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
-          <div className='mt-14 w-[35rem] mx-[8rem] overflow-y-auto h-[20rem]'>
+        <div className="custom-scrollbar mt-14 mx-auto  overflow-y-auto h-[400px]">
+        <div className='grid gap-3 md:grid-cols-1 sm:grid-cols-2'>
+          <div className='mt-14 w-[35rem] my-0 mx-auto  overflow-y-auto h-[20rem]'>
             <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
               {filteredVocabularies.map((vocab) => (
                 <Card

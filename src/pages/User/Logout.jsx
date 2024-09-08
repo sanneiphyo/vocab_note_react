@@ -44,9 +44,9 @@ const Logout = () => {
           }
     }
   return (
-    <Button className='border-0 w-[190px]  text-lg' onClick={handleLogout}>
+    <p  onClick={handleLogout} className=''>
       
-        Logout</Button>
+        Logout</p>
   )
 }
 
