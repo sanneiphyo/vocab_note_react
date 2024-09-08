@@ -34,7 +34,10 @@ export default function NewWordForm() {
       message.success('Vocabulary submitted successfully');
       console.log('Server response:', response.data);
       form.resetFields();
-      navigate("/vocab/new-word/flashcard"); 
+        
+      setTimeout(() => {
+        navigate(0)
+      }, 1000);
     } catch (error) {
       message.error('Failed to submit the vocabulary');
       console.error('Error submitting form:', error);

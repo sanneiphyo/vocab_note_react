@@ -84,14 +84,26 @@ const RevisedCard = () => {
     if (!selectedVocab) return;
 
     try {
-      const apiUrl = `http://localhost:3000/vocabularies/${selectedVocab.id}`;
-      await axios.delete(apiUrl);
-      message.success('Vocabulary deleted successfully');
+      console.log(selectedVocab)
+      const apiUrl = `http://localhost:8000/api/vocabularies/${selectedVocab.id}`;
+      const updatedData = { ...selectedVocab, is_revised : false}; 
+      console.log(updatedData)
+      await axios.put(apiUrl, updatedData, {
+        headers: {
+          'Content-Type': 'application/json',
+           'Authorization': `Bearer ${token}`
+        },
+      });
+      message.success('Vocabulary updated successfully');
       setIsModalVisible(false);
       setVocabularies(); 
+
+      setTimeout(() => {
+        navigate(0)
+      }, 1000);
     } catch (error) {
-      message.error('Failed to delete vocabulary');
-      console.error('Error deleting vocabulary:', error);
+      message.error('Failed to update vocabulary');
+      console.error('Error updating vocabulary:', error);
     }
   };
 
