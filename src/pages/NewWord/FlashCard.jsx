@@ -5,6 +5,7 @@ import axios from 'axios';
 import Balloon from "../../assets/Images/Balloon.png";
 import AddNewWord from './AddNewWord';
 import Nodata from '../../assets/Images/No data image.png'
+import { useNavigate } from 'react-router-dom';
 
 const { Search } = Input;
 
@@ -15,6 +16,7 @@ const Flashcard = () => {
   const [selectedVocab, setSelectedVocab] = useState(null);
   const token = localStorage.getItem('token');
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     
@@ -102,9 +104,18 @@ const Flashcard = () => {
              'Authorization': `Bearer ${token}`
           }
       });
+
       message.success('Vocabulary deleted successfully');
       setIsModalVisible(false);
       setVocabularies(); 
+    
+      
+      setTimeout(() => {
+        navigate(0)
+      }, 1000);
+      
+        
+     
     } catch (error) {
       message.error('Failed to delete vocabulary');
       console.error('Error deleting vocabulary:', error);
