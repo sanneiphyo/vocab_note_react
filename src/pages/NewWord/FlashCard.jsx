@@ -44,7 +44,7 @@ const Flashcard = () => {
 
   const onSearch = (value) => {
     const filtered = vocabularies.filter(vocab =>
-      vocab.definition.toLowerCase().includes(value.toLowerCase())
+      vocab.title.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredVocabularies(filtered);
   };
