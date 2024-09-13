@@ -11,6 +11,7 @@ const SelectAnswers = ({handleClickAnswer, options, correct_answer, next, quiz})
     const [color, setColor] = useState('')
     const [correct, setCorrect] = useState('default')
     const [check, setCheck] = useState(false)
+    const [answer, setAnswer] = useState('')
     
     const dispatch = useDispatch()
 
@@ -20,35 +21,39 @@ const SelectAnswers = ({handleClickAnswer, options, correct_answer, next, quiz})
   const onChange = (e) => {
     
     setValue(e.target.value)
+    setAnswer(e.target.value)
    
   }
 
   const onSubmit = () => {
-    console.log(value, correct_answer);
 
     setCheck(true)
     
-    if (value == correct_answer) {
+    if ( answer == correct_answer) {
         console.log(correct_answer);
         
         setCorrect('true')
-        setColor('text-green-500')
-    }else if (value !== correct_answer){
+        setColor('border-green-500')
+    }else if ( answer !== correct_answer){
         console.log('wrong');
         
         setCorrect('false')
-        setColor('text-red-500')
+        setColor('border-red-500')
     }else{
       setCorrect('')
+      setColor('')
     }
-    handleClickAnswer(value)
+    handleClickAnswer(answer)
   }
 
+  console.log(color);
+  
 
   const handleNext = () =>{
     setCheck(false)
     setCorrect('')
     next()
+    setColor('')
   }
 
   const AddToIncorrectQuiz = () => {
@@ -65,11 +70,14 @@ const SelectAnswers = ({handleClickAnswer, options, correct_answer, next, quiz})
 
   return (
     <>
-    <Radio.Group  disabled={check} className="block w-full">
+    <Radio.Group  
+     disabled={check} 
+    className="block w-full">
     <div className='flex flex-row gap-3'>
         {
             options.map((opt, index) => (
-              <div className="inline-block w-full p-2 border rounded-md">
+              <div 
+              className={`inline-block w-full p-2 border rounded-md ${color && opt == value ? color : '' }`}>
                    <Radio 
                 
                 onClick={onChange}

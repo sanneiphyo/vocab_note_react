@@ -23,7 +23,7 @@ const NewWord = () => {
 
 
   return (
-    <div className=' w-full'>
+    <div className='w-full '>
       <Space direction="vertical">
         <Search
           suffix={suffix}

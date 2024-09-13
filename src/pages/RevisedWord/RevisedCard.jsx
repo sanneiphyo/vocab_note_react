@@ -44,7 +44,7 @@ const RevisedCard = () => {
 
   const onSearch = (value) => {
     const filtered = vocabularies.filter(vocab =>
-      vocab.definition.toLowerCase().includes(value.toLowerCase())
+      vocab.title.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredVocabularies(filtered);
   };
@@ -123,7 +123,7 @@ const RevisedCard = () => {
       </Space>
      </div>
 
-      <div className="custom-scrollbar mt-14 mx-auto   overflow-y-auto h-[400px]">
+      <div className="custom-scrollbar mt-[5px] mx-auto   overflow-y-auto h-[400px]">
         <div className='grid gap-3 md:grid-cols-1 sm:grid-cols-2'>
           <div className='mt-14 w-[35rem] mx-auto overflow-y-auto h-[20rem]'>
             <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
