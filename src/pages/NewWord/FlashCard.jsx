@@ -141,7 +141,7 @@ const Flashcard = () => {
      
       {
         filteredVocabularies?.length > 0 ?
-        <div className="custom-scrollbar mt-14 mx-auto  overflow-y-auto h-[400px]">
+        <div className="custom-scrollbar mt-[5px] mx-auto  overflow-y-auto h-[400px]">
         <div className='grid gap-3 md:grid-cols-1 sm:grid-cols-2'>
           <div className='mt-14 w-[35rem] my-0 mx-auto  overflow-y-auto h-[20rem]'>
             <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>

@@ -32,7 +32,7 @@ const AppLayout = () => {
       <Sider className='relative w-[100%] ' trigger={null} collapsible collapsed={collapsed}  style ={{ background: colorBgContainer}}>
         <div className="demo-logo-vertical" />  
         <div className='mx-[3rem] mt-5'>
-          <img src = {Logo} className='w-[10rem] h-[5rem]'/>
+          <img src = {Logo} className='w-[70px]  '/>
         </div>
         <Menu
           mode="inline"
