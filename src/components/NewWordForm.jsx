@@ -119,13 +119,7 @@ export default function NewWordForm() {
         </Form.Item>
       </div>
 
-      <Form.Item
-        name="isRevised"
-        valuePropName="checked"
-        initialValue={false}
-      >
-        <Switch checkedChildren="Revised" unCheckedChildren="Not Revised" defaultChecked />
-      </Form.Item>
+      
 
       <div className="flex gap-3 font-bold">
         <Form.Item className="mt-5 bg-white">

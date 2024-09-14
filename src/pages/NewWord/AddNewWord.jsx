@@ -25,7 +25,7 @@ export default function AddNewWord() {
 
   const handleFormSubmit = async (newWord) => {
     if (newWord) {
-      setIsLoading(true);
+      // setIsLoading(true);
       try {
         // Simulating an API call
         await new Promise(resolve => setTimeout(resolve, 1000));
@@ -35,7 +35,7 @@ export default function AddNewWord() {
       } catch (error) {
         message.error("Error occurred while submitting");
       } finally {
-        setIsLoading(false);
+        // setIsLoading(false);
       }
     } else {
       message.error("Error occurred while submitting");
@@ -43,12 +43,12 @@ export default function AddNewWord() {
   };
 
   return (
-    <div className="container flex justify-center py-8">
+    <div className="container   py-8">
     
       <Button
         type="primary"
         onClick={showModal}
-        className="px-4 py-2 mt-3 mb-8 font-bold text-white bg-blue-700 border-blue-500 rounded hover:bg-blue-500 hover:border-blue-600"
+        className="px-4 sm:ml-[28rem] py-2 mb-8 font-bold text-white bg-blue-700 border-blue-500 rounded hover:bg-blue-500 hover:border-blue-600"
       >
         Add New Word <PlusOutlined />
       </Button>

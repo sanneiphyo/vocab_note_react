@@ -15,19 +15,19 @@ const Flashcard = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedVocab, setSelectedVocab] = useState(null);
   const token = localStorage.getItem('token');
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
     
     const fetchVocabularies = async () => {
-      setLoading(true)
+      // setLoading(true)
       try {
         const apiUrl = 'http://localhost:8000/api/vocabularies';
         const response = await axios.get(apiUrl, {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            // 'Authorization': `Bearer ${token}`
           },
         });
         setVocabularies(response.data);
@@ -59,14 +59,14 @@ const Flashcard = () => {
     setSelectedVocab(null);
   };
 
-  if (loading) {
-    return (
+  // if (loading) {
+  //   return (
   
-        <div className="flex justify-center items-center h-[500px]">
-            <Spin size="large" />
-        </div>
-    )
-  }
+  //       <div className="flex justify-center items-center h-[500px]">
+  //           <Spin size="large" />
+  //       </div>
+  //   )
+  // }
   
 
   const AddToRevise = async () => {
@@ -101,7 +101,7 @@ const Flashcard = () => {
        
           headers: {
            
-             'Authorization': `Bearer ${token}`
+            //  'Authorization': `Bearer ${token}`
           }
       });
 

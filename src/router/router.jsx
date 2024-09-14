@@ -38,13 +38,7 @@ const Router = () => {
                 element: <RevisedWord/>
             },
               
-            {
-
-                path:"/vocab/new-word",
-                element:<NewWord/>
-
-            },
-
+          
             {
 
                 path: "/vocab/revise/quiz",
