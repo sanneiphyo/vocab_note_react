@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button, message, Switch, Select } from 'antd';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Use this at the top level
@@ -7,6 +7,7 @@ export default function NewWordForm() {
   const [form] = Form.useForm();
   const navigate = useNavigate(); // Call useNavigate here
   const token = localStorage.getItem('token')
+  const [selectVal, setSelectVal] = useState('noun')
 
   const onFinish = async (values) => {
     const formattedValues = {
@@ -14,7 +15,7 @@ export default function NewWordForm() {
       definition: values.definition,
       synonyms: values.synonyms,
       antonyms: values.antonyms,
-      type: values.speech,
+      type: selectVal,
       example: values.exampleSentence,
       is_revised: values.isRevised,
     };
@@ -52,7 +53,9 @@ export default function NewWordForm() {
     }
   };
 
-  
+  const handleChange = (value) => {
+    setSelectVal(value)
+  };
   
   
 
@@ -87,7 +90,8 @@ export default function NewWordForm() {
               style={{
                 width: 120,
               }}
-              // onChange={handleChange}
+              value={selectVal}
+               onChange={handleChange}
               options={[
                 {
                   value: 'noun',
