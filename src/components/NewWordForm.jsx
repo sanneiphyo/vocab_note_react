@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, message, Switch } from 'antd';
+import { Form, Input, Button, message, Switch, Select } from 'antd';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Use this at the top level
 
@@ -52,6 +52,10 @@ export default function NewWordForm() {
     }
   };
 
+  
+  
+  
+
   return (
     <Form
       form={form}
@@ -59,7 +63,7 @@ export default function NewWordForm() {
       onFinish={onFinish}
       autoComplete="off"
     >
-      <div className="flex gap-8">
+      <div className="flex items-center gap-8">
         <Form.Item
           label="Vocab (Title)"
           name="vocab"
@@ -69,14 +73,61 @@ export default function NewWordForm() {
           <Input placeholder='Any Vocabulary' />
         </Form.Item>
 
-        <Form.Item
+        {/* <Form.Item
           label="Speech (Type)"
           name="speech"
           rules={[{ required: true, message: 'Please input the part of speech!' }]}
           className="flex-1"
         >
           <Input placeholder='Example - nouns' />
-        </Form.Item>
+        </Form.Item> */}
+          <Select
+               className="flex-1"
+              defaultValue="noun"
+              style={{
+                width: 120,
+              }}
+              // onChange={handleChange}
+              options={[
+                {
+                  value: 'noun',
+                  label: 'noun',
+                },
+                {
+                  value: 'adjective',
+                  label: 'adjective',
+                },
+                {
+                  value: 'adverb',
+                  label: 'adverb',
+                },
+                {
+                  value: 'verb',
+                  label: 'verb',
+                  
+                },
+                {
+                  value: 'pronoun',
+                  label: 'pronoun',
+                  
+                },
+                {
+                  value: 'conjunction',
+                  label: 'conjunction',
+                  
+                },
+                {
+                  value: 'determiner',
+                  label: 'determiner',
+                  
+                },
+                {
+                  value: 'preposition',
+                  label: 'preposition',
+                  
+                }
+              ]}
+            />
       </div>
 
       <div className="flex gap-8 mt-2">
